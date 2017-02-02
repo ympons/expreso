@@ -4,14 +4,14 @@ defmodule Expreso.Reducer do
   """
 
   def reduce({:binary_expr, op, a, b}, func) do
-    with {:ok, a} = reduce(a, func),
-         {:ok, b} = reduce(b, func) do
+    with {:ok, a} <- reduce(a, func),
+         {:ok, b} <- reduce(b, func) do
       func.({:binary_expr, op, a, b})       
     end
   end
 
   def reduce({:unary_expr, op, a}, func) do
-    with {:ok, a} = reduce(a, func) do
+    with {:ok, a} <- reduce(a, func) do
       func.({:unary_expr, op, a})
     end
   end

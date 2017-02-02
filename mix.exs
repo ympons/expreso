@@ -3,7 +3,7 @@ defmodule Expreso.Mixfile do
 
   def project do
     [app: :expreso,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.3",
      description: description,
      package: package,

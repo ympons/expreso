@@ -36,7 +36,7 @@ defmodule Expreso do
   @spec eval(expr :: String.t | charlist, props :: map) :: {:ok, result::boolean} | {:error, error::map}
   def eval(expr), do: eval(expr, %{})
   def eval(expr, props) do
-    with {:ok, tree} = parse(expr) do
+    with {:ok, tree} <- parse(expr) do
       Reducer.reduce(tree, &Evaluator.eval(&1, props))
     end
   end
@@ -46,7 +46,7 @@ defmodule Expreso do
   """
   @spec parse(expr :: String.t | charlist) :: {:ok, tree::tuple} | {:error, error::map}
   def parse(expr) do
-    with {:ok, tokens} = lex(expr) do
+    with {:ok, tokens} <- lex(expr) do
       :expreso_parser.parse(tokens)
     end
   end
@@ -69,8 +69,8 @@ defmodule Expreso do
   """
   @spec variables(expr :: String.t | charlist) :: {:ok, variables::list}
   def variables(expr) do
-    with {:ok, tokens} = lex(expr),
-         {:ok, _tree}  = :expreso_parser.parse(tokens) do
+    with {:ok, tokens} <- lex(expr),
+         {:ok, _tree}  <- :expreso_parser.parse(tokens) do
       result = tokens
         |> Enum.filter(&elem(&1, 0) == :var)
         |> Enum.map(&elem(&1, 2))
