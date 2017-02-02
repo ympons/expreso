@@ -1,4 +1,4 @@
-# Expres
+# Expreso
 
 An Elixir library for parsing and evaluating boolean expressions
 
