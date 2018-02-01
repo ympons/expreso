@@ -94,7 +94,7 @@ defmodule Expreso.PropertyTest do
   property "negative number limitation" do
     check all x <- negative_integer() do
       assert template_status("x = x", %{"x" => x}) == :ok
-      assert template_status("#{x} = #{x}") == :error
+      assert template_status("#{x} = #{x}") == :ok
     end
   end
 
