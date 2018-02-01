@@ -4,7 +4,7 @@ defmodule Expreso.Mixfile do
   def project do
     [app: :expreso,
      version: "0.0.2",
-     elixir: "~> 1.5",
+     elixir: "~> 1.3",
      description: description(),
      elixirc_paths: elixirc_paths(Mix.env),
      package: package(),
