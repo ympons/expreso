@@ -46,14 +46,14 @@ defmodule Expreso.PropertyTest do
       assert x != y == eval_template("x != y", %{"x" => x, "y" => y})
     end
 
-    check all {x, str_x} <- abs_float_exclude_scientific(),
-              {y, str_y} <- abs_float_exclude_scientific() do
-      assert x < y == eval_template("#{str_x} < #{str_y}")
-      assert x <= y == eval_template("#{str_x} <= #{str_y}")
-      assert x > y == eval_template("#{str_x} > #{str_y}")
-      assert x >= y == eval_template("#{str_x} >= #{str_y}")
-      assert x == y == eval_template("#{str_x} = #{str_y}")
-      assert x != y == eval_template("#{str_x} != #{str_y}")
+    check all x <- number(),
+              y <- number() do
+      assert x < y == eval_template("#{x} < #{y}")
+      assert x <= y == eval_template("#{x} <= #{y}")
+      assert x > y == eval_template("#{x} > #{y}")
+      assert x >= y == eval_template("#{x} >= #{y}")
+      assert x == y == eval_template("#{x} = #{y}")
+      assert x != y == eval_template("#{x} != #{y}")
     end
   end
 
@@ -91,19 +91,17 @@ defmodule Expreso.PropertyTest do
     end
   end
 
-  property "negative number limitation" do
-    check all x <- negative_integer() do
-      assert template_status("x = x", %{"x" => x}) == :ok
-      assert template_status("#{x} = #{x}") == :ok
+  property "numerical variables equivalent to litterals" do
+    check all x <- number(),
+              y <- number() do
+      assert eval_template("x = y", %{"x" => x, "y" => y}) == eval_template("#{x} = #{y}")
     end
   end
 
-  property "boolean limitation" do
+  property "boolean variables equivalent to litterals" do
     check all x <- boolean() do
-      assert template_status("x and x", %{"x" => x}) == :ok
-      assert template_status("#{x} and #{x}") == :ok
-      assert template_status("x or x", %{"x" => x}) == :ok
-      assert template_status("#{x} or #{x}") == :ok
+      assert eval_template("x and x", %{"x" => x}) == eval_template("#{x} and #{x}")
+      assert eval_template("x or x", %{"x" => x}) == eval_template("#{x} or #{x}")
     end
   end
 
