@@ -158,6 +158,11 @@ defmodule Expreso.PropertyTest do
       assert eval_template("x + 0 = x", %{"x" => x}) == true
       assert eval_template("x * 1 = x", %{"x" => x}) == true
     end
+
+    check all x <- boolean() do
+      assert eval_template("x and true", %{"x" => x}) == x
+      assert eval_template("x or false", %{"x" => x}) == x
+    end
   end
 
   property "DeMorgan’s Law" do
