@@ -6,7 +6,7 @@ defmodule Expreso.Reducer do
   def reduce({:binary_expr, op, a, b}, func) do
     with {:ok, a} <- reduce(a, func),
          {:ok, b} <- reduce(b, func) do
-      func.({:binary_expr, op, a, b})       
+      func.({:binary_expr, op, a, b})
     end
   end
 
@@ -16,11 +16,11 @@ defmodule Expreso.Reducer do
     end
   end
 
-  def reduce({type, value}, func) when type in [:number, :string, :var] do 
+  def reduce({type, value}, func) when type in [:number, :string, :var] do
     func.({type, value})
   end
 
-  def reduce(other, func) when is_list(other) or other in [true, false] do 
+  def reduce(other, func) when is_list(other) or other in [true, false] do
     func.(other)
   end
 end

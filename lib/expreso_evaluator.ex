@@ -3,7 +3,7 @@ defmodule Expreso.Evaluator do
   Provides features for evaluating the AST.
   """
 
-  def eval({:binary_expr, {_op_type, op}, a, b}, _) 
+  def eval({:binary_expr, {_op_type, op}, a, b}, _)
     when is_number(a) and is_number(b) do
 
     result = case op do
@@ -21,7 +21,7 @@ defmodule Expreso.Evaluator do
     {:ok, result}
   end
 
-  def eval({:binary_expr, {_op_type, op}, a, b}, _) 
+  def eval({:binary_expr, {_op_type, op}, a, b}, _)
     when is_binary(a) and is_binary(b) do
 
     result = case op do
@@ -51,7 +51,7 @@ defmodule Expreso.Evaluator do
   def eval({:binary_expr, :not_in_op, a, list}, _)
     when is_list(list), do: {:ok, !Enum.member?(list, a)}
 
-  def eval({:binary_expr, :and_op, a, b}, _) 
+  def eval({:binary_expr, :and_op, a, b}, _)
     when is_boolean(a) and is_boolean(b), do: {:ok, a and b}
 
   def eval({:binary_expr, :or_op, a, b}, _)
