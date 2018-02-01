@@ -100,8 +100,10 @@ defmodule Expreso.PropertyTest do
 
   property "boolean limitation" do
     check all x <- boolean() do
-      assert template_status("x and x", %{"x" => x}) == :error
+      assert template_status("x and x", %{"x" => x}) == :ok
       assert template_status("#{x} and #{x}") == :ok
+      assert template_status("x or x", %{"x" => x}) == :ok
+      assert template_status("#{x} or #{x}") == :ok
     end
   end
 

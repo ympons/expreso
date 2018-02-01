@@ -19,6 +19,8 @@ expression -> expression and_op expression  : {binary_expr, and_op, '$1', '$3'}.
 expression -> not_op expression : {unary_expr, not_op, '$2'}.
 expression -> '(' expression ')' : '$2'.
 
+predicate -> scalar_exp and_op scalar_exp : {binary_expr, and_op, '$1', '$3'}.
+predicate -> scalar_exp or_op scalar_exp : {binary_expr, or_op, '$1', '$3'}.
 predicate -> scalar_exp comp_op scalar_exp : {binary_expr, extract('$2'), '$1', '$3'}.
 predicate -> scalar_exp in_op '(' elements ')' : {binary_expr, in_op, '$1', '$4'}.
 predicate -> scalar_exp not_op in_op '(' elements ')' : {binary_expr, not_in_op, '$1', '$5'}.
