@@ -1,2 +1,6 @@
 %{"earmark": {:hex, :earmark, "1.1.0", "8c2bf85d725050a92042bc1edf362621004d43ca6241c756f39612084e95487f", [:mix], []},
-  "ex_doc": {:hex, :ex_doc, "0.14.5", "c0433c8117e948404d93ca69411dd575ec6be39b47802e81ca8d91017a0cf83c", [:mix], [{:earmark, "~> 1.0", [hex: :earmark, optional: false]}]}}
+  "ex_doc": {:hex, :ex_doc, "0.14.5", "c0433c8117e948404d93ca69411dd575ec6be39b47802e81ca8d91017a0cf83c", [:mix], [{:earmark, "~> 1.0", [hex: :earmark, optional: false]}]},
+  "fs": {:hex, :fs, "0.9.2", "ed17036c26c3f70ac49781ed9220a50c36775c6ca2cf8182d123b6566e49ec59", [], [], "hexpm"},
+  "mix_test_watch": {:hex, :mix_test_watch, "0.1.2", "c3e4ba40b5987cecbd44550efbc17133cffabf2c3e4b314cb84ad5ae7e474066", [], [{:fs, "~> 0.9.1", [hex: :fs, repo: "hexpm", optional: false]}, {:porcelain, "~> 2.0.0", [hex: :porcelain, repo: "hexpm", optional: false]}], "hexpm"},
+  "porcelain": {:hex, :porcelain, "2.0.3", "2d77b17d1f21fed875b8c5ecba72a01533db2013bd2e5e62c6d286c029150fdc", [], [], "hexpm"},
+  "stream_data": {:hex, :stream_data, "0.4.0", "128c01bfd0fae0108d169eee1772aeed6958604f8782abc2d6e11da4e52468b0", [], [], "hexpm"}}
