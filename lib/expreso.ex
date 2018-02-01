@@ -1,11 +1,11 @@
 defmodule Expreso do
-  alias Expreso.{Reducer, Evaluator} 
+  alias Expreso.{Reducer, Evaluator}
 
   @moduledoc """
   A boolean expression parser and evaluator in Elixir.
 
   ## Basic types
-  Expreso has five basic types: integers, floats, strings, list, and booleans. 
+  Expreso has five basic types: integers, floats, strings, list, and booleans.
   The following are some basic types:
 
   ```
@@ -26,7 +26,7 @@ defmodule Expreso do
 
     * Boolean
       `not`, `in`, `and`, `or`
-  
+
   """
 
   @doc """
@@ -56,14 +56,14 @@ defmodule Expreso do
   """
   @spec lex(expr :: String.t | charlist) :: {:ok, tokens::list}
   def lex(expr) when is_binary(expr) do
-    expr |> to_char_list |> lex
+    expr |> to_charlist() |> lex()
   end
 
   def lex(expr) do
-    {:ok, tokens, _} = expr |> :expreso_lexer.string
+    {:ok, tokens, _} = expr |> :expreso_lexer.string()
     {:ok, tokens}
   end
-  
+
   @doc """
   Lists all the variables in the given `expr`.
   """
@@ -74,7 +74,7 @@ defmodule Expreso do
       result = tokens
         |> Enum.filter(&elem(&1, 0) == :var)
         |> Enum.map(&elem(&1, 2))
-        |> Enum.uniq
+        |> Enum.uniq()
       {:ok, result}
     end
   end

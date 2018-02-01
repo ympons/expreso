@@ -14,6 +14,7 @@ Nonassoc 700 not_op.
 expression -> true : true.
 expression -> false : false.
 expression -> predicate : '$1'.
+expression -> var : extract('$1').
 expression -> expression or_op expression   : {binary_expr, or_op, '$1', '$3'}.
 expression -> expression and_op expression  : {binary_expr, and_op, '$1', '$3'}.
 expression -> not_op expression : {unary_expr, not_op, '$2'}.
