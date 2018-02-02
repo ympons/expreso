@@ -1,5 +1,4 @@
-# Expreso
-
+# Expreso [![Build Status](https://travis-ci.org/ympons/expreso.svg?branch=master)](https://travis-ci.org/ympons/expreso) [![Hex Version](https://img.shields.io/hexpm/v/expreso.svg)](https://hex.pm/packages/expreso)
 An Elixir library for parsing and evaluating boolean expressions
 
 ## Installation
@@ -10,7 +9,7 @@ From [Hex](https://hex.pm/packages/expreso), the package can be installed as:
 
     ```elixir
     def deps do
-      [{:expreso, "~> 0.0.2"}]
+      [{:expreso, "~> 0.1.0"}]
     end
     ```
 
