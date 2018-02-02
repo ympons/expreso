@@ -27,6 +27,17 @@ defmodule Expreso.Evaluator do
     result = case op do
       :=  -> a == b
       :!= -> a != b
+      # TODO: handle other operators, maybe string concatenation
+    end
+    {:ok, result}
+  end
+
+  def eval({:binary_expr, {_op_type, op}, a, b}, _)
+    when is_boolean(a) and is_boolean(b) do
+
+    result = case op do
+      :=  -> a == b
+      :!= -> a != b
     end
     {:ok, result}
   end
