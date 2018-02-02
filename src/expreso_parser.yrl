@@ -1,18 +1,17 @@
-Nonterminals expression predicate scalar_exp elements element.
+Nonterminals expression predicate scalar_exp elements element bool.
 
-Terminals atom var number string mult_op add_op and_op or_op in_op not_op comp_op '(' ')' ',' true false.
+Terminals atom var number string mult_op add_op and_op or_op in_op not_op eq_op comp_op '(' ')' ',' true false.
 
 Rootsymbol expression.
 Left 100 or_op.
 Left 200 and_op.
-Left 300 comp_op.
+Left 300 eq_op comp_op.
 Left 400 in_op.
 Left 500 add_op.
 Left 600 mult_op.
 Nonassoc 700 not_op.
 
-expression -> true : true.
-expression -> false : false.
+expression -> bool : '$1'.
 expression -> predicate : '$1'.
 expression -> var : extract('$1').
 expression -> expression or_op expression   : {binary_expr, or_op, '$1', '$3'}.
@@ -20,6 +19,8 @@ expression -> expression and_op expression  : {binary_expr, and_op, '$1', '$3'}.
 expression -> not_op expression : {unary_expr, not_op, '$2'}.
 expression -> '(' expression ')' : '$2'.
 
+predicate -> bool eq_op bool : {binary_expr, extract('$2'), '$1', '$3'}.
+predicate -> scalar_exp eq_op scalar_exp : {binary_expr, extract('$2'), '$1', '$3'}.
 predicate -> scalar_exp comp_op scalar_exp : {binary_expr, extract('$2'), '$1', '$3'}.
 predicate -> scalar_exp in_op '(' elements ')' : {binary_expr, in_op, '$1', '$4'}.
 predicate -> scalar_exp not_op in_op '(' elements ')' : {binary_expr, not_in_op, '$1', '$5'}.
@@ -38,6 +39,9 @@ element -> atom : '$1'.
 element -> var : extract('$1').
 element -> string : extract('$1').
 element -> number : extract('$1').
+
+bool -> true : true.
+bool -> false : false.
 
 Erlang code.
 

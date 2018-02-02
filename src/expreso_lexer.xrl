@@ -3,7 +3,8 @@ Definitions.
 VAR   = ([A-Za-z_][0-9a-zA-Z_]*)
 INT   = [-+]?[0-9]+
 FLOAT = [-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?
-COMP  = (<|<=|=|>=|>|!=)
+COMP  = (<|<=|>=|>)
+EQ    = (=|!=)
 ADD   = (\+|\-)
 MULT  = (\*|/|mod)
 STR   = '[^'\n]*'
@@ -17,6 +18,7 @@ in      : {token, {in_op,   TokenLine, list_to_atom(TokenChars)}}.
 or      : {token, {or_op,   TokenLine, list_to_atom(TokenChars)}}.
 and     : {token, {and_op,  TokenLine, list_to_atom(TokenChars)}}.
 not     : {token, {not_op,  TokenLine, list_to_atom(TokenChars)}}.
+{EQ}    : {token, {eq_op,   TokenLine, list_to_atom(TokenChars)}}.
 {COMP}  : {token, {comp_op, TokenLine, list_to_atom(TokenChars)}}.
 {ADD}   : {token, {add_op,  TokenLine, list_to_atom(TokenChars)}}.
 {MULT}  : {token, {mult_op, TokenLine, list_to_atom(TokenChars)}}.
