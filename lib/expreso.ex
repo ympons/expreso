@@ -60,8 +60,12 @@ defmodule Expreso do
   end
 
   def lex(expr) do
-    {:ok, tokens, _} = expr |> :expreso_lexer.string()
-    {:ok, tokens}
+    case :expreso_lexer.string(expr) do
+      {:ok, tokens, _} ->
+        {:ok, tokens}
+      {:error, reason, line} ->
+        {:error, reason, line}
+    end
   end
 
   @doc """

@@ -68,4 +68,10 @@ defmodule Expreso.ParserTest do
               {:number, 2}}}
     assert {:ok, exp} == Expreso.parse(str)
   end
+
+  test "parse invalid expression" do
+    str = "iam = 'invalid"
+    assert {:error, {1, :expreso_lexer, {:illegal, '\'invalid'}}, 1} == Expreso.parse(str)
+  end
+
 end
