@@ -28,8 +28,13 @@ defmodule Expreso.ParserTest do
       {:number, 1, 1},
       {:eq_op, 1, :=},
       {:number, 1, 22}
-    ] 
+    ]
     assert {:ok, exp} == Expreso.lex(str)
+  end
+
+  test "tokenize an invalid expression" do
+    str = "a = 'invalid"
+    assert {:error, {1, :expreso_lexer, {:illegal, '\'invalid'}}, 1} == Expreso.lex(str)
   end
 
   test "parse an expression" do
@@ -67,5 +72,10 @@ defmodule Expreso.ParserTest do
               {:binary_expr, {:add_op, :+}, {:number, 1}, {:number, 1}},
               {:number, 2}}}
     assert {:ok, exp} == Expreso.parse(str)
+  end
+
+  test "parse an invalid expression" do
+    str = "= true = true"
+    assert {:error, {1, :expreso_parser, ['syntax error before: ', ['\'=\'']]}} == Expreso.parse(str)
   end
 end

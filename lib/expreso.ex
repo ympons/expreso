@@ -60,8 +60,9 @@ defmodule Expreso do
   end
 
   def lex(expr) do
-    {:ok, tokens, _} = expr |> :expreso_lexer.string()
-    {:ok, tokens}
+    with {:ok, tokens, _} <- :expreso_lexer.string(expr) do
+      {:ok, tokens}
+    end
   end
 
   @doc """
