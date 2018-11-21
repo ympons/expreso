@@ -9,7 +9,7 @@ From [Hex](https://hex.pm/packages/expreso), the package can be installed as:
 
     ```elixir
     def deps do
-      [{:expreso, "~> 0.1.0"}]
+      [{:expreso, "~> 0.1.1"}]
     end
     ```
 
