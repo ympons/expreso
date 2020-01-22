@@ -3,15 +3,13 @@ An Elixir library for parsing and evaluating boolean expressions
 
 ## Installation
 
-From [Hex](https://hex.pm/packages/expreso), the package can be installed as:
+From [Hex](https://hex.pm/packages/expreso), the package can be installed by adding it to your list of dependencies in `mix.exs`: 
 
-  1. Add `expreso` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:expreso, "~> 0.1.1"}]
-    end
-    ```
+```elixir
+def deps do
+  [{:expreso, "~> 0.1.1"}]
+end
+```
 
 ## Usage
 

@@ -8,6 +8,10 @@ defmodule Expreso.Mixfile do
      description: description(),
      elixirc_paths: elixirc_paths(Mix.env),
      package: package(),
+     docs: [
+      main: "readme",
+      extras: ["README.md"]
+     ],
      deps: deps()]
   end
 
