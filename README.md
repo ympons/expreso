@@ -1,3 +1,5 @@
+
+
 # Expreso [![Build Status](https://travis-ci.org/ympons/expreso.svg?branch=master)](https://travis-ci.org/ympons/expreso) [![Hex Version](https://img.shields.io/hexpm/v/expreso.svg)](https://hex.pm/packages/expreso)
 An Elixir library for parsing and evaluating boolean expressions
 
@@ -21,7 +23,7 @@ Parses and evaluates the provided expression. The variables can be supplied as a
 
 eg.
 ```
-# Evaluate if a + 2 is between 3 and 1
+# Check if a + 2 is in the tuple (3, 1)
 iex> Expreso.eval("a + 2 in (3, 1)", %{"a" => 1})
 iex> {:ok, true}
 
