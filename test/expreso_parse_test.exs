@@ -34,32 +34,32 @@ defmodule Expreso.ParserTest do
 
   test "tokenize an invalid expression" do
     str = "a = 'invalid"
-    assert {:error, {1, :expreso_lexer, {:illegal, '\'invalid'}}, 1} == Expreso.lex(str)
+    assert {:error, {1, :expreso_lexer, {:illegal, ~c"'invalid"}}, 1} == Expreso.lex(str)
   end
 
   test "parse an expression" do
     str = "a = 22"
     exp = {:binary_expr, {:eq_op, :=},
-            {:var, "a"}, 
+            {:var, "a"},
             {:number, 22}}
     assert {:ok, exp} == Expreso.parse(str)
   end
 
   test "parse another expression" do
     str = "a + 1 >= 5 and b in (5, 11) and (c not in (3, 4))"
-    exp = {:binary_expr, :and_op, 
-            {:binary_expr, :and_op, 
-              {:binary_expr, {:comp_op, :>=}, 
-                {:binary_expr, {:add_op, :+}, {:var, "a"}, {:number, 1}}, 
-                {:number, 5}}, 
-              {:binary_expr, :in_op, {:var, "b"}, [5, 11]}}, 
+    exp = {:binary_expr, :and_op,
+            {:binary_expr, :and_op,
+              {:binary_expr, {:comp_op, :>=},
+                {:binary_expr, {:add_op, :+}, {:var, "a"}, {:number, 1}},
+                {:number, 5}},
+              {:binary_expr, :in_op, {:var, "b"}, [5, 11]}},
             {:binary_expr, :not_in_op, {:var, "c"}, [3, 4]}}
     assert {:ok, exp} == Expreso.parse(str)
   end
 
   test "parse an expression with in_op and sum" do
     str = "a + 1 in (3, 1, 2)"
-    exp = {:binary_expr, :in_op, 
+    exp = {:binary_expr, :in_op,
             {:binary_expr, {:add_op, :+}, {:var, "a"}, {:number, 1}}, [3, 1, 2]}
     assert {:ok, exp} == Expreso.parse(str)
   end
@@ -76,6 +76,6 @@ defmodule Expreso.ParserTest do
 
   test "parse an invalid expression" do
     str = "= true = true"
-    assert {:error, {1, :expreso_parser, ['syntax error before: ', ['\'=\'']]}} == Expreso.parse(str)
+    assert {:error, {1, :expreso_parser, [~c(syntax error before: ), [~c('=')]]}} == Expreso.parse(str)
   end
 end

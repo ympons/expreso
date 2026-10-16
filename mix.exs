@@ -4,7 +4,7 @@ defmodule Expreso.Mixfile do
   def project do
     [app: :expreso,
      version: "0.1.1",
-     elixir: "~> 1.5",
+     elixir: "~> 1.16",
      description: description(),
      elixirc_paths: elixirc_paths(Mix.env),
      package: package(),
@@ -12,7 +12,8 @@ defmodule Expreso.Mixfile do
       main: "readme",
       extras: ["README.md"]
      ],
-     deps: deps()]
+     deps: deps(),
+     compilers: [:yecc, :leex] ++ Mix.compilers()]
   end
 
   # Specifies which paths to compile per environment.
@@ -20,14 +21,14 @@ defmodule Expreso.Mixfile do
   defp elixirc_paths(_),     do: ["lib"]
 
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   defp deps do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:mix_test_watch, "~> 0.1.1", only: :test},
-      {:stream_data, "~> 0.1", only: :test},
+      {:ex_doc, "~> 0.40", only: :dev},
+      {:mix_test_watch, "~> 1.2", only: :test},
+      {:stream_data, "~> 1.4", only: :test},
     ]
   end
 

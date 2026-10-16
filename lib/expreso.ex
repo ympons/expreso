@@ -30,7 +30,7 @@ defmodule Expreso do
   """
 
   @doc """
-  Evaluates the given `expr`.
+  Evaluates the given `expr`.
   """
   @spec eval(expr :: String.t | charlist) :: {:ok, result::boolean} | {:error, error::map}
   @spec eval(expr :: String.t | charlist, props :: map) :: {:ok, result::boolean} | {:error, error::map}
@@ -42,7 +42,7 @@ defmodule Expreso do
   end
 
   @doc """
-  Parses the given `expr` to a syntax tree.
+  Parses the given `expr` to a syntax tree.
   """
   @spec parse(expr :: String.t | charlist) :: {:ok, tree::tuple} | {:error, error::map}
   def parse(expr) do
@@ -52,7 +52,7 @@ defmodule Expreso do
   end
 
   @doc """
-  Tokenizes the given `expr` to a tokens list.
+  Tokenizes the given `expr` to a tokens list.
   """
   @spec lex(expr :: String.t | charlist) :: {:ok, tokens::list}
   def lex(expr) when is_binary(expr) do
@@ -66,7 +66,7 @@ defmodule Expreso do
   end
 
   @doc """
-  Lists all the variables in the given `expr`.
+  Lists all the variables in the given `expr`.
   """
   @spec variables(expr :: String.t | charlist) :: {:ok, variables::list}
   def variables(expr) do

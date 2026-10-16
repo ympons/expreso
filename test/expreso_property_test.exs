@@ -38,6 +38,10 @@ defmodule Expreso.PropertyTest do
   property "numerical comparison" do
     check all x <- number(),
               y <- number() do
+
+      # convince the type checker (and assert at runtime) that these are numbers
+      assert is_number(x) and is_number(y)
+
       assert x < y == eval_template("x < y", %{"x" => x, "y" => y})
       assert x <= y == eval_template("x <= y", %{"x" => x, "y" => y})
       assert x > y == eval_template("x > y", %{"x" => x, "y" => y})
@@ -48,6 +52,10 @@ defmodule Expreso.PropertyTest do
 
     check all x <- number(),
               y <- number() do
+
+      # convince the type checker (and assert at runtime) that these are numbers
+      assert is_number(x) and is_number(y)
+
       assert x < y == eval_template("#{x} < #{y}")
       assert x <= y == eval_template("#{x} <= #{y}")
       assert x > y == eval_template("#{x} > #{y}")
